@@ -12,8 +12,10 @@ namespace Platformer
 {
     public partial class Main : Form
     {
-        bool right;
-        bool left;
+        bool right, left;
+        bool jump;
+        int grav = 30;
+        int force;
 
         public Main()
         {
@@ -24,12 +26,27 @@ namespace Platformer
         {
             if (right == true) {player.Left += 5; }
             if (left== true) { player.Left -= 5; }
+            if (jump == true)
+            {
+                player.Top -= force;
+                force -= 1;
+            }
+
         }
 
         private void Main_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Right) { right = true; }
             if (e.KeyCode == Keys.Left) { left = true; }
+            if (e.KeyCode == Keys.Escape) { this.Close(); }
+            if (jump != true)
+            {
+                if (e.KeyCode = Keys.Space)
+                {
+                    jump = true;
+                    force = grav;
+                }
+            }
         }
 
         private void Main_KeyUp(object sender, KeyEventArgs e)
