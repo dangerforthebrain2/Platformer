@@ -24,6 +24,23 @@ namespace Platformer
 
         private void movment_Tick(object sender, EventArgs e)
         {
+            // side collision
+            if (player.Right > platform.Left && player.Left < platform.Right - player.Width / 2 && player.Bottom > platform.Top)
+            {
+                right = false;
+
+            }
+            if (player.Left < platform.Right && player.Right > platform.Left + player.Width / 2 && player.Bottom > platform.Top)
+            {
+                left = false;
+            }
+            //top collision
+            if (player.Left + player.Width - 1 > platform.Left && player.Left + player.Width + 5 < platform.Left + platform.Width && player.Top + player.Height >= platform.Top && player.Top < platform.Top)
+            {
+                player.Top = playedField.Height - platform.Height - player.Height;
+                force = 0;
+                jump = false;
+            }
             if (right == true) {player.Left += 5; }
             if (left== true) { player.Left -= 5; }
             if (jump == true)
