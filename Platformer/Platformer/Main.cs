@@ -31,17 +31,26 @@ namespace Platformer
                 player.Top -= force;
                 force -= 1;
             }
+            if (player.Top + player.Height >= playedField.Height)
+            {
+                player.Top = playedField.Height - player.Height;
+                jump = false;
+            } 
+            else
+            {
+                player.Top += 5;  
+            }
 
         }
 
         private void Main_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Right) { right = true; }
-            if (e.KeyCode == Keys.Left) { left = true; }
+            if (e.KeyCode == Keys.D) { right = true; }
+            if (e.KeyCode == Keys.A) { left = true; }
             if (e.KeyCode == Keys.Escape) { this.Close(); }
             if (jump != true)
             {
-                if (e.KeyCode == Keys.Space)
+                if (e.KeyCode == Keys.W)
                 {
                     jump = true;
                     force = grav;
@@ -51,8 +60,8 @@ namespace Platformer
 
         private void Main_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Right) { right = false; }
-            if (e.KeyCode == Keys.Left) { left = false; }
+            if (e.KeyCode == Keys.D) { right = false; }
+            if (e.KeyCode == Keys.A) { left = false; }
         }
     }
 }
