@@ -41,7 +41,7 @@ namespace Platformer
             if (e.KeyCode == Keys.Escape) { this.Close(); }
             if (jump != true)
             {
-                if (e.KeyCode = Keys.Space)
+                if (e.KeyCode == Keys.Space)
                 {
                     jump = true;
                     force = grav;
